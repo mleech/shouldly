@@ -57,12 +57,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dictionaries\ShouldContainKeyAndValue\ClassScenario.cs" />
+    <Compile Include="Dictionaries\ShouldContainKeyAndValue\AdditionalInfoScenario.cs" />
     <Compile Include="Dictionaries\ShouldContainKeyAndValue\StringScenario_OnlyValueMatches.cs" />
     <Compile Include="Dictionaries\ShouldContainKeyAndValue\StringScenario_OnlyKeyMatches.cs" />
     <Compile Include="Dictionaries\ShouldContainKeyAndValue\GuidScenario.cs" />
     <Compile Include="Dictionaries\ShouldContainKeyAndValue\OnlyKeyMatches.cs" />
     <Compile Include="Dictionaries\ShouldContainKeyAndValue\OnlyValueMatches.cs" />
+    <Compile Include="Dictionaries\ShouldContainKey\AdditionalInfoScenario.cs" />
+    <Compile Include="Dictionaries\ShouldNotContainKey\AdditionalInfoScenario.cs" />
+    <Compile Include="Dictionaries\ShouldNotContainValueForKey\AdditionalInfoScenario.cs" />
     <Compile Include="DynamicShould\HavePropertyNonDynamicScenario.cs" />
+    <Compile Include="DynamicShould\AdditionalInfoScenario.cs" />
     <Compile Include="DynamicShould\MultiLineHavePropertyScenario_MaximumLines.cs" />
     <Compile Include="DynamicShould\MultiLineHavePropertyScenario.cs" />
     <Compile Include="DynamicShould\HavePropertyScenario.cs" />

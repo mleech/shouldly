@@ -32,6 +32,8 @@ namespace Shouldly
 
         public bool IsNegatedAssertion { get { return ShouldMethod.Contains("Not"); } }
 
+        public string AdditionalInfo { get; set; }
+
         internal ShouldlyAssertionContext(object expected, object actual = null)
         {
             var stackTrace = new StackTrace(true);

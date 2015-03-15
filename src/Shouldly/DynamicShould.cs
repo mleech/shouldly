@@ -12,13 +12,18 @@ namespace Shouldly
     {
         public static void HaveProperty(dynamic dynamicTestObject, string p)
         {
+           HaveProperty(dynamicTestObject, p, null);
+        }
+
+        public static void HaveProperty(dynamic dynamicTestObject, string p, string additionalInfo)
+        {
             if (dynamicTestObject is IDynamicMetaObjectProvider)
             {
                 var dynamicAsDictionary = (IDictionary<string, object>)dynamicTestObject;
 
                 if (!dynamicAsDictionary.ContainsKey(p))
                 {
-                    throw new ShouldAssertException(new ExpectedShouldlyMessage(p).ToString());
+                    throw new ShouldAssertException(new ExpectedShouldlyMessage(p, additionalInfo).ToString());
                 }
             }
             else
@@ -26,7 +31,7 @@ namespace Shouldly
                 var dynamicAsObject = (object)dynamicTestObject;
                 if (!dynamicAsObject.GetType().GetProperties().Select(x => x.Name).Contains(p))
                 {
-                    throw new ShouldAssertException(new ExpectedShouldlyMessage(p).ToString());
+                    throw new ShouldAssertException(new ExpectedShouldlyMessage(p, additionalInfo).ToString());
                 }
             }
         }

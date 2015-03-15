@@ -9,49 +9,54 @@ namespace Shouldly
 {
     internal class ExpectedShouldlyMessage : ShouldlyMessage
     {
-        public ExpectedShouldlyMessage(object expected)
+        public ExpectedShouldlyMessage(object expected, string additionalInfo = null)
         {
             ShouldlyAssertionContext = new ShouldlyAssertionContext(expected);
+            ShouldlyAssertionContext.AdditionalInfo = additionalInfo;
         }
     }
 
     internal class ExpectedActualShouldlyMessage : ShouldlyMessage
     {
-        public ExpectedActualShouldlyMessage(object expected, object actual)
+        public ExpectedActualShouldlyMessage(object expected, object actual, string additionalInfo = null)
         {
             ShouldlyAssertionContext = new ShouldlyAssertionContext(expected, actual);
             ShouldlyAssertionContext.HasRelevantActual = true;
+            ShouldlyAssertionContext.AdditionalInfo = additionalInfo;
         }
     }
 
     internal class ExpectedActualToleranceShouldlyMessage : ShouldlyMessage
     {
-        public ExpectedActualToleranceShouldlyMessage(object expected, object actual, object tolerance)
+        public ExpectedActualToleranceShouldlyMessage(object expected, object actual, object tolerance, string additionalInfo = null)
         {
             ShouldlyAssertionContext = new ShouldlyAssertionContext(expected, actual);
             ShouldlyAssertionContext.Tolerance = tolerance;
             ShouldlyAssertionContext.HasRelevantActual = true;
+            ShouldlyAssertionContext.AdditionalInfo = additionalInfo;
         }
     }
 
     internal class ExpectedActualIgnoreOrderShouldlyMessage : ShouldlyMessage
     {
-        public ExpectedActualIgnoreOrderShouldlyMessage(object expected, object actual)
+        public ExpectedActualIgnoreOrderShouldlyMessage(object expected, object actual, string additionalInfo = null)
         {
             ShouldlyAssertionContext = new ShouldlyAssertionContext(expected, actual);
             ShouldlyAssertionContext.IgnoreOrder = true;
             ShouldlyAssertionContext.HasRelevantActual = true;
+            ShouldlyAssertionContext.AdditionalInfo = additionalInfo;
         }
     }
 
     internal class ExpectedActualKeyShouldlyMessage : ShouldlyMessage
     {
-        public ExpectedActualKeyShouldlyMessage(object expected, object actual, object key)
+        public ExpectedActualKeyShouldlyMessage(object expected, object actual, object key, string additionalInfo = null)
         {
             ShouldlyAssertionContext = new ShouldlyAssertionContext(expected, actual);
             ShouldlyAssertionContext.Key = key;
             ShouldlyAssertionContext.HasRelevantActual = true;
             ShouldlyAssertionContext.HasRelevantKey = true;
+            ShouldlyAssertionContext.AdditionalInfo = additionalInfo;
         }
     }
 
@@ -86,7 +91,14 @@ namespace Shouldly
 
         public override string ToString()
         {
-            return GenerateShouldMessage();
+            var message = GenerateShouldMessage();
+            if (_shouldlyAssertionContext.AdditionalInfo != null)
+            {
+                message += string.Format(@"
+    Additional Info:
+    {0}", _shouldlyAssertionContext.AdditionalInfo);
+            }
+            return message;
         }
 
         private string GenerateShouldMessage()
