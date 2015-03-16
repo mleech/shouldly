@@ -12,63 +12,113 @@ namespace Shouldly
     {
         public static void ShouldContain<T>(this IEnumerable<T> actual, T expected)
         {
+            ShouldContain(actual, expected, null);
+        }
+
+        public static void ShouldContain<T>(this IEnumerable<T> actual, T expected, string additionalInfo)
+        {
             if (!actual.Contains(expected))
-                throw new ShouldAssertException(new ExpectedActualShouldlyMessage(expected, actual).ToString());
+                throw new ShouldAssertException(new ExpectedActualShouldlyMessage(expected, actual, additionalInfo).ToString());
         }
 
         public static void ShouldNotContain<T>(this IEnumerable<T> actual, T expected)
         {
+            ShouldNotContain(actual, expected, null);
+        }
+
+        public static void ShouldNotContain<T>(this IEnumerable<T> actual, T expected, string additionalInfo)
+        {
             if (actual.Contains(expected))
-                throw new ShouldAssertException(new ExpectedActualShouldlyMessage(expected, actual).ToString());
+                throw new ShouldAssertException(new ExpectedActualShouldlyMessage(expected, actual, additionalInfo).ToString());
         }
 
         public static void ShouldContain<T>(this IEnumerable<T> actual, Expression<Func<T, bool>> elementPredicate)
         {
+            ShouldContain(actual, elementPredicate, null);
+        }
+
+        public static void ShouldContain<T>(this IEnumerable<T> actual, Expression<Func<T, bool>> elementPredicate, string additionalInfo)
+        {
             var condition = elementPredicate.Compile();
             if (!actual.Any(condition))
-                throw new ShouldAssertException(new ExpectedShouldlyMessage(elementPredicate.Body).ToString());
+                throw new ShouldAssertException(new ExpectedShouldlyMessage(elementPredicate.Body, additionalInfo).ToString());
         }
 
         public static void ShouldNotContain<T>(this IEnumerable<T> actual, Expression<Func<T, bool>> elementPredicate)
         {
+            ShouldNotContain(actual, elementPredicate, null);
+        }
+
+        public static void ShouldNotContain<T>(this IEnumerable<T> actual, Expression<Func<T, bool>> elementPredicate, string additionalInfo)
+        {
             var condition = elementPredicate.Compile();
             if (actual.Any(condition))
-                throw new ShouldAssertException(new ExpectedShouldlyMessage(elementPredicate.Body).ToString());
+                throw new ShouldAssertException(new ExpectedShouldlyMessage(elementPredicate.Body, additionalInfo).ToString());
         }
 
         public static void ShouldAllBe<T>(this IEnumerable<T> actual, Expression<Func<T, bool>> elementPredicate)
         {
+            ShouldAllBe(actual, elementPredicate, null);
+        }
+
+        public static void ShouldAllBe<T>(this IEnumerable<T> actual, Expression<Func<T, bool>> elementPredicate, string additionalInfo)
+        {
             var condition = elementPredicate.Compile();
             var actualResults = actual.Where(part => !condition(part));
             if (actualResults.Any())
-                throw new ShouldAssertException(new ExpectedActualShouldlyMessage(elementPredicate.Body, actualResults).ToString());
+                throw new ShouldAssertException(new ExpectedActualShouldlyMessage(elementPredicate.Body, actualResults, additionalInfo).ToString());
         }
 
         public static void ShouldBeEmpty<T>(this IEnumerable<T> actual)
         {
+            ShouldBeEmpty(actual, null);
+        }
+
+        public static void ShouldBeEmpty<T>(this IEnumerable<T> actual, string additionalInfo)
+        {
             if (actual == null || (actual != null && actual.Count() != 0))
-                throw new ShouldAssertException(new ExpectedShouldlyMessage(actual).ToString());
+                throw new ShouldAssertException(new ExpectedShouldlyMessage(actual, additionalInfo).ToString());
         }
 
         public static void ShouldNotBeEmpty<T>(this IEnumerable<T> actual)
         {
+            ShouldNotBeEmpty(actual, null);
+        }
+
+        public static void ShouldNotBeEmpty<T>(this IEnumerable<T> actual, string additionalInfo)
+        {
             if (actual == null || actual != null && !actual.Any())
-                throw new ShouldAssertException(new ExpectedShouldlyMessage(actual).ToString());
+                throw new ShouldAssertException(new ExpectedShouldlyMessage(actual, additionalInfo).ToString());
         }
 
         public static void ShouldContain(this IEnumerable<float> actual, float expected, double tolerance)
         {
+            ShouldContain(actual, expected, tolerance, null);
+        }
+
+        public static void ShouldContain(this IEnumerable<float> actual, float expected, double tolerance, string additionalInfo)
+        {
             if (!actual.Any(a => Math.Abs(expected - a) < tolerance))
-                throw new ShouldAssertException(new ExpectedActualToleranceShouldlyMessage(expected, actual, tolerance).ToString());
+                throw new ShouldAssertException(new ExpectedActualToleranceShouldlyMessage(expected, actual, tolerance, additionalInfo).ToString());
         }
 
         public static void ShouldContain(this IEnumerable<double> actual, double expected, double tolerance)
         {
+            ShouldContain(actual, expected, tolerance, null);
+        }
+
+        public static void ShouldContain(this IEnumerable<double> actual, double expected, double tolerance, string additionalInfo)
+        {
             if (!actual.Any(a => Math.Abs(expected - a) < tolerance))
-                throw new ShouldAssertException(new ExpectedActualToleranceShouldlyMessage(expected, actual, tolerance).ToString());
+                throw new ShouldAssertException(new ExpectedActualToleranceShouldlyMessage(expected, actual, tolerance, additionalInfo).ToString());
         }
 
         public static void ShouldBeSubsetOf<T>(this IEnumerable<T> actual, IEnumerable<T> expected)
+        {
+            ShouldBeSubsetOf(actual, expected, null);
+        }
+
+        public static void ShouldBeSubsetOf<T>(this IEnumerable<T> actual, IEnumerable<T> expected, string additionalInfo)
         {
             if (actual.Equals(expected))
                 return;
@@ -85,14 +135,19 @@ namespace Shouldly
                 }
                 return false;
             }))
-                throw new ShouldAssertException(new ExpectedShouldlyMessage(expected).ToString());
+                throw new ShouldAssertException(new ExpectedShouldlyMessage(expected, additionalInfo).ToString());
         }
 
         public static void ShouldBeUnique<T>(this IEnumerable<T> actual)
         {
+            ShouldBeUnique(actual, null);
+        }
+
+        public static void ShouldBeUnique<T>(this IEnumerable<T> actual, string additionalInfo)
+        {
             var duplicates = GetDuplicates(actual);
             if (duplicates.Any())
-                throw new ShouldAssertException(new ExpectedActualShouldlyMessage(new List<T>(), duplicates).ToString());
+                throw new ShouldAssertException(new ExpectedActualShouldlyMessage(new List<T>(), duplicates, additionalInfo).ToString());
         }
 
         static List<object> GetDuplicates<T>(IEnumerable<T> items)
