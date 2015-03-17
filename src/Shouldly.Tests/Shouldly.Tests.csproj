@@ -146,6 +146,15 @@
     <Compile Include="ShouldThrow\FuncOfTaskWhichThrowsDirectlyScenario.cs" />
     <Compile Include="ShouldThrow\NestedAwaitsDoNotDeadlockScenario.cs" />
     <Compile Include="ShouldThrow\TaskTimeoutTests.cs" />
+    <Compile Include="Strings\ShouldBeEmpty\AdditionalInfoScenario.cs" />
+    <Compile Include="Strings\ShouldBeNullOrEmpty\AdditionalInfoScenario.cs" />
+    <Compile Include="Strings\ShouldBe\AdditionalInfoScenario.cs" />
+    <Compile Include="Strings\ShouldContainWithoutWhitespace\AdditionalInfoScenario.cs" />
+    <Compile Include="Strings\ShouldEndWith\AdditionalInfoScenario.cs" />
+    <Compile Include="Strings\ShouldMatch\AdditionalInfoScenario.cs" />
+    <Compile Include="Strings\ShouldNotEndWith\AdditionalInfoScenario.cs" />
+    <Compile Include="Strings\ShouldNotStartWith\AdditionalInfoScenario.cs" />
+    <Compile Include="Strings\ShouldStartWith\AdditionalInfoScenario.cs" />
     <Compile Include="TestHelpers\SomeFlags.cs" />
     <Compile Include="ShouldBeOneOf\EnumScenario.cs" />
     <Compile Include="ShouldBeOneOf\IntScenario.cs" />
@@ -218,7 +227,7 @@
     <Compile Include="ShouldBe\BoxedIntScenario.cs" />
     <Compile Include="Strings\ShouldBeEmpty\ActualIsNull.cs" />
     <Compile Include="Strings\ShouldBeEmpty\ShouldBeEmptyBasicScenario.cs" />
-    <Compile Include="Strings\ShouldBeNullOrEmpty.cs" />
+    <Compile Include="Strings\ShouldBeNullOrEmpty\ShouldBeNullOrEmpty.cs" />
     <Compile Include="Strings\ShouldBe\CaseIsInsensitiveScenario.cs" />
     <Compile Include="Strings\ShouldBe\CaseIsSensitiveScenario.cs" />
     <Compile Include="ShouldBe\ComparingBaseWithDerivedTypeShouldFail.cs" />
@@ -252,8 +261,8 @@
     <Compile Include="ShouldNotBe\NumbersOfDifferentTypesScenario.cs" />
     <Compile Include="ShouldNotBe\StringScenario.cs" />
     <Compile Include="TestHelpers\Strange.cs" />
-    <Compile Include="Strings\ShouldContainWithoutWhitespace.cs" />
-    <Compile Include="Strings\ShouldMatch.cs" />
+    <Compile Include="Strings\ShouldContainWithoutWhitespace\ShouldContainWithoutWhitespace.cs" />
+    <Compile Include="Strings\ShouldMatch\ShouldMatch.cs" />
     <Compile Include="Strings\ShouldNotEndWith\BasicScenario.cs" />
     <Compile Include="Strings\ShouldNotStartWith\BasicScenario.cs" />
     <Compile Include="Strings\ShouldNotStartWith\ShouldIgnoreCaseByDefault.cs" />

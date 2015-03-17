@@ -4,7 +4,7 @@ namespace Shouldly
 {
     internal static class ShouldlyCoreExtensions
     {
-        internal static void AssertAwesomely<T>(this T actual, Func<T, bool> specifiedConstraint, object originalActual, object originalExpected)
+        internal static void AssertAwesomely<T>(this T actual, Func<T, bool> specifiedConstraint, object originalActual, object originalExpected, string additionalInfo = null)
         {
             try
             {
@@ -15,10 +15,10 @@ namespace Shouldly
                 throw new ShouldAssertException(ex.Message, ex);
             }
 
-            throw new ShouldAssertException(new ExpectedActualShouldlyMessage(originalExpected, originalActual).ToString());
+            throw new ShouldAssertException(new ExpectedActualShouldlyMessage(originalExpected, originalActual, additionalInfo).ToString());
         }
 
-        internal static void AssertAwesomelyIgnoringOrder<T>(this T actual, Func<T, bool> specifiedConstraint, object originalActual, object originalExpected)
+        internal static void AssertAwesomelyIgnoringOrder<T>(this T actual, Func<T, bool> specifiedConstraint, object originalActual, object originalExpected, string additionalInfo = null)
         {
             try
             {
@@ -29,10 +29,10 @@ namespace Shouldly
                 throw new ShouldAssertException(ex.Message, ex);
             }
 
-            throw new ShouldAssertException(new ExpectedActualIgnoreOrderShouldlyMessage(originalExpected, originalActual).ToString());
+            throw new ShouldAssertException(new ExpectedActualIgnoreOrderShouldlyMessage(originalExpected, originalActual, additionalInfo).ToString());
         }
 
-        internal static void AssertAwesomely<T>(this T actual, Func<T, bool> specifiedConstraint, object originalActual, object originalExpected, object tolerance)
+        internal static void AssertAwesomely<T>(this T actual, Func<T, bool> specifiedConstraint, object originalActual, object originalExpected, object tolerance, string additionalInfo = null)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace Shouldly
                 throw new ShouldAssertException(ex.Message, ex);
             }
 
-            throw new ShouldAssertException(new ExpectedActualToleranceShouldlyMessage(originalExpected, originalActual, tolerance).ToString());
+            throw new ShouldAssertException(new ExpectedActualToleranceShouldlyMessage(originalExpected, originalActual, tolerance, additionalInfo).ToString());
         }
     }
 }

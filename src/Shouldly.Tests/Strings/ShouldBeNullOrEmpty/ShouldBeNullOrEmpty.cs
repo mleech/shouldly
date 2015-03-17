@@ -1,6 +1,6 @@
 ﻿using Shouldly.Tests.TestHelpers;
 
-namespace Shouldly.Tests.Strings
+namespace Shouldly.Tests.Strings.ShouldBeNullOrEmpty
 {
     public class ShouldBeNullOrEmpty : ShouldlyShouldTestScenario
     {

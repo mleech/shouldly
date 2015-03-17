@@ -1,6 +1,6 @@
 ﻿using Shouldly.Tests.TestHelpers;
 
-namespace Shouldly.Tests.Strings
+namespace Shouldly.Tests.Strings.ShouldContainWithoutWhitespace
 {
     public class ShouldContainWithoutWhitespace : ShouldlyShouldTestScenario
     {
